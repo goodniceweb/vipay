@@ -1,3 +1,5 @@
+require 'digest/md5'
+
 class Participant < ApplicationRecord
   belongs_to :user
   belongs_to :party
@@ -5,5 +7,9 @@ class Participant < ApplicationRecord
 
   def name
     user.first_name
+  end
+
+  def color
+    Digest::MD5.hexdigest(name)[0..5]
   end
 end
