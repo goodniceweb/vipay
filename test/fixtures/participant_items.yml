@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  participant: one
+  item: one
+  invoice_id: 1
+  amount: MyString
+  total: MyString
+
+two:
+  participant: two
+  item: two
+  invoice_id: 1
+  amount: MyString
+  total: MyString
