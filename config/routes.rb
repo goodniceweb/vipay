@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       delete 'remove'
     end
   end
+
+  resources :results
 end
