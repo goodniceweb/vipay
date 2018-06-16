@@ -5,6 +5,6 @@ class ReceiptsController < ApplicationController
 
   def create
     # TODO: create items
-    render json: Party.find(3).as_json
+    render json: Party.where(chat_id: -220834405).last.as_json
   end
 end
