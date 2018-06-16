@@ -10,6 +10,10 @@ class Participant < ApplicationRecord
   end
 
   def color
-    Digest::MD5.hexdigest(name)[0..5]
+    return '6b08d6' first_name == 'Victor'
+    return 'f92e27' first_name == 'Alex'
+    return '56af5c' first_name == 'Kirill'
+    return '0b2e84' first_name == 'Tatiana'
+    'b6bc00'
   end
 end
