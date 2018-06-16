@@ -17,3 +17,11 @@ party = Party.create(chat_id: -220834405)
 users.each do |user|
   Participant.find_or_create_by(user_id: user.id, admin: user.id == 3, party_id: party.id) 
 end
+
+items = [{:amount=>2, :name=>"potato", :price=>"50", :total=>"100"},
+ {:amount=>1, :name=>"cola", :price=>"5.60", :total=>"5.60"},
+ {:amount=>1, :name=>"pizza", :price=>"40", :total=>"40"}]
+
+items.each do |item|
+  Item.where(item.merge(party_id: party.id)).first_or_create
+end
