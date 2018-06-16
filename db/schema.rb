@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180616180722) do
+ActiveRecord::Schema.define(version: 20180616190015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180616180722) do
     t.string "total"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["party_id"], name: "index_items_on_party_id"
   end
 
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20180616180722) do
     t.bigint "party_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin"
     t.index ["party_id"], name: "index_participants_on_party_id"
     t.index ["user_id"], name: "index_participants_on_user_id"
   end
@@ -69,6 +71,8 @@ ActiveRecord::Schema.define(version: 20180616180722) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.integer "telegram_id"
   end
 
   add_foreign_key "invoices", "participants"
