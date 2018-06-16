@@ -4,10 +4,9 @@ class ReultsController < ApplicationController
       user_amount = item.amount.to_f / item.users.count
 
        item.users.each do |user_id|
-         ParticipantItem.create!(user_id: user_id,
+         ParticipantItem.create!(participant_id: user_id,
                                 amount: user_amount,
-                                item_id: item.id,
-                                party_id: params[:party_id])
+                                item_id: item.id)
        end
     end
 
