@@ -1,4 +1,4 @@
-class ReultsController < ApplicationController
+class ResultsController < ApplicationController
   def create
     params[:items].each do |item|
       user_amount = item.amount.to_f / item.users.count
