@@ -1,7 +1,7 @@
 require 'pry'
-gem 'telegram-bot-ruby'
-
+require 'logger'
 require 'telegram/bot'
+# require 'telegram-bot-ruby'
 
 Telegram::Bot::Client.run('600521389:AAGGt9Ptz0fDF7jfBhrL-XS-7hs9N6cXWUA', logger: Logger.new($stdout)) do |bot|
   begin
