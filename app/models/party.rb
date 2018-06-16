@@ -3,6 +3,6 @@ class Party < ApplicationRecord
   has_many :participants
 
   def as_json(options = {})
-    super(options.merge(include: [:items, :participants]))
+    super(options.merge(include: [:items, participants: { methods: [:name] }]))
   end
 end
