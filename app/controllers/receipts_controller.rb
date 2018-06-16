@@ -4,5 +4,6 @@ class ReceiptsController < ApplicationController
   end
 
   def create
+    render json: { party_id: 1, total: 245.60 }
   end
 end

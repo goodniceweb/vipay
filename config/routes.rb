@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :receipts do
-  end
+  root to: "receipts#index"
+  resources :receipts
 end
