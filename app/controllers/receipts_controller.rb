@@ -113,7 +113,7 @@ class ReceiptsController < ApplicationController
       end
     end
     total ||= "245.60"
-    party.update_columns(total: total) if party.total.blank?
+    party.update_columns(total: total)
     if party.items.blank?
       items = [{:amount=>2, :name=>"potato", :price=>"50", :total=>"100"},
        {:amount=>1, :name=>"cola", :price=>"5.60", :total=>"5.60"},

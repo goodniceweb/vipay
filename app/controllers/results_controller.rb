@@ -47,6 +47,7 @@ class ResultsController < ApplicationController
         bot.api.send_message(chat_id: user.telegram_id, text: msg, reply_markup: markup)
       end
     end
+    render json: party.invoices.as_json
     #  json: {
     #     party_id: 1,
     #     total: 245.60,
