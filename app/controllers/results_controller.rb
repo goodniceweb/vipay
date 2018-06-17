@@ -29,12 +29,9 @@ class ResultsController < ApplicationController
 
     party = Party.find_by(id: params[:partyId])
     Telegram::Bot::Client.run('600521389:AAGGt9Ptz0fDF7jfBhrL-XS-7hs9N6cXWUA', logger: Logger.new($stdout)) do |bot|
-      # path = Rails.root.join('check4.jpg')
-      # io = nil
-      # File.open(path) do |jpg|
-      #   io = UploadIO.new(jpg, 'image/jpeg', path)
-      # end
-      # bot.api.send_photo(chat_id: party.chat_id, photo: io)
+      path = './check4.jpg'
+      bot.api.send_photo(chat_id: message.chat.id, photo: Faraday::UploadIO.new(path, 'image/jpeg'))
+
       participant_ids.uniq.each do |participant_id|
         participant = Participant.find_by(id: participant_id)
         next if participant.blank?
