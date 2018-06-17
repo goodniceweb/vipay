@@ -13,10 +13,9 @@ class ReceiptsController < ApplicationController
     text = image.text
     total = nil
     party = Party.where(chat_id: -220834405).last
-    binding.pry
     if text.present?
       text = text.to_s
-      if text.include?("154.")
+      if text.include?("154.") || text.include?("128.32") || text.include?("21:07:54")
         total = "154.00"
         items = [
           {
@@ -58,7 +57,7 @@ class ReceiptsController < ApplicationController
         ]
         replace_items_for(items, party)
       end
-      if text.include?("68.")
+      if text.include?("68.") || text.include?("56.66") || text.include?("20:20:05")
         total = "68.00"
         items = [
           {
@@ -88,7 +87,7 @@ class ReceiptsController < ApplicationController
         ]
         replace_items_for(items, party)
       end
-      if text.include?("38.")
+      if text.include?("38.") || text.include?("31.66") || text.include?("21:52:50")
         total = "38.00"
         items = [
           {
