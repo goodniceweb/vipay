@@ -13,6 +13,7 @@ class ReceiptsController < ApplicationController
     text = image.text
     total = nil
     party = Party.where(chat_id: -220834405).last
+    binding.pry
     if text.present?
       text = text.to_s
       if text.include?("154.")
@@ -85,10 +86,7 @@ class ReceiptsController < ApplicationController
             total: "19",
           }
         ]
-        Item.where(party_id: party.id).destroy_all
-        items.each do |item|
-          Item.where(item.merge(party_id: party.id))
-        end
+        replace_items_for(items, party)
       end
       if text.include?("38.")
         total = "38.00"
@@ -106,10 +104,7 @@ class ReceiptsController < ApplicationController
             total: "19",
           }
         ]
-        Item.where(party_id: party.id).destroy_all
-        items.each do |item|
-          Item.where(item.merge(party_id: party.id))
-        end
+        replace_items_for(items, party)
       end
     end
     total ||= "245.60"
@@ -119,9 +114,10 @@ class ReceiptsController < ApplicationController
        {:amount=>1, :name=>"cola", :price=>"5.60", :total=>"5.60"},
        {:amount=>1, :name=>"pizza", :price=>"40", :total=>"40"}]
       
-      items.each do |item|
-        Item.where(item.merge(party_id: party.id)).first_or_create
-      end
+      replace_items_for(items, party)
+    end
+    party.invoices.map do |invoice|
+      invoice.update_columns(paid: true)
     end
     render json: party.as_json
   end

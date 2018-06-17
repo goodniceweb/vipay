@@ -38,7 +38,6 @@ class ResultsController < ApplicationController
         user = participant.user
         next if user.blank?
         invoice = user.build_invoice_for(party)
-        puts("Wtf, invoice doesn't work") if invoice.blank?
         msg = "Привет, #{user.nickname}. Мы вчера хорошо потусили. Не забудь, пожалуйста, скинуться деньгами."
         msg += "Итого получилось: #{invoice.total}" if invoice.present?
         markup = Telegram::Bot::Types::InlineKeyboardMarkup.new(inline_keyboard: [[
@@ -48,14 +47,5 @@ class ResultsController < ApplicationController
       end
     end
     render json: party.invoices.where(paid: false).as_json
-    #  json: {
-    #     party_id: 1,
-    #     total: 245.60,
-    #     items: [
-    #       { id: 1, amount: 2, name: "potato", price: "50", total: "100", users: [id1, ] },
-    #       { id: 2, amount: 1, name: "cola", price: "5.60", total: "5.60" },
-    #       { id: 3, amount: 1, name: "pizza", price: "40", total: "40" }
-    #     ]
-    #   }
   end
 end
