@@ -21,7 +21,7 @@ class ResultsController < ApplicationController
         ParticipantItem.create!(
           participant_id: participant_id,
           amount: user_amount,
-          total: item.price * user_amount,
+          total: item.price.to_f * user_amount,
           item_id: item.id
         )
       end
