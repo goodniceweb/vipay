@@ -10,7 +10,7 @@ namespace :scheduler do
             bot.api.send_message(chat_id: message.chat.id, text: msg)            # case message.text
           end
 
-          if message.text.include?("+1")
+          if message.text.include?("+") || message.text.include?("я")
             user_params = message.from
 
             user = User.find_or_create_by(first_name: user_params.first_name,
@@ -21,6 +21,25 @@ namespace :scheduler do
             Participant.find_or_create_by(user_id: user.id, party_id: party.id)
 
             bot.api.send_message(chat_id: message.chat.id, text: "Добавил #{user.first_name} в тусу")            # case message.text
+          end
+
+          if message.text.include?("+1")
+            user_params = message.from
+
+            user = User.find_or_create_by(first_name: user_params.first_name,
+                                           last_name: user_params.last_name,
+                                           telegram_id: user_params.id)
+
+            guest = User.find_or_create_by(first_name: "#{user_params.first_name}+1",
+                                          last_name: user_params.last_name,
+                                           telegram_id: user_params.id)
+
+
+            party = Party.where(chat_id: message.chat.id).first_or_create
+            Participant.find_or_create_by(user_id: user.id, party_id: party.id)
+            Participant.find_or_create_by(user_id: guest.id, party_id: party.id)
+
+            bot.api.send_message(chat_id: message.chat.id, text: "Добавил #{user.first_name} и его гостя в тусу")            # case message.text
           end
 
           if message.text.include?("list")
