@@ -30,7 +30,7 @@ class ResultsController < ApplicationController
     party = Party.find_by(id: params[:partyId])
     Telegram::Bot::Client.run('600521389:AAGGt9Ptz0fDF7jfBhrL-XS-7hs9N6cXWUA', logger: Logger.new($stdout)) do |bot|
       path = './check4.jpg'
-      bot.api.send_photo(chat_id: message.chat.id, photo: Faraday::UploadIO.new(path, 'image/jpeg'))
+      bot.api.send_photo(chat_id: party.chat_id, photo: Faraday::UploadIO.new(path, 'image/jpeg'))
 
       participant_ids.uniq.each do |participant_id|
         participant = Participant.find_by(id: participant_id)

@@ -1,5 +1,5 @@
 class Party < ApplicationRecord
-  has_many :items
+  has_many :items, dependent: :nullify
   has_many :participants
 
   def as_json(options = {})
