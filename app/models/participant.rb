@@ -10,11 +10,10 @@ class Participant < ApplicationRecord
   end
 
   def color
-    first_name = user.first_name
-    return '6b08d6' if first_name == 'Victor'
-    return 'f92e27' if first_name == 'Alex'
-    return '56af5c' if first_name == 'Kirill'
-    return '0b2e84' if first_name == 'Tatiana'
+    return '6b08d6' if name == 'Victor'
+    return 'f92e27' if name == 'Alex'
+    return '56af5c' if name == 'Kirill'
+    return '0b2e84' if name == 'Tatiana'
     'b6bc00'
   end
 end
