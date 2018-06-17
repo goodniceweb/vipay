@@ -8,7 +8,7 @@
 users = [
   User.find_or_create_by(
     first_name: "Victor",
-    last_name: "Makoed", 
+    last_name: "Makoed",
     email: "vmakoed@gmail.com",
     phone: "+375255417247",
     username: "vmakoed",
@@ -35,14 +35,14 @@ users = [
     last_name: "LL",
     email: "kirill@gmail.com",
     phone: "+375255417247",
-    telegram_id: 62843349
+    telegram_id: 183569785
   )
 ]
 
 party = Party.where(chat_id: -220834405, total: "245.60").first_or_create
 
 users.each do |user|
-  Participant.find_or_create_by(user_id: user.id, admin: user.id == 3, party_id: party.id) 
+  Participant.find_or_create_by(user_id: user.id, admin: user.id == 3, party_id: party.id)
 end
 
 items = [{:amount=>2, :name=>"potato", :price=>"50", :total=>"100"},
